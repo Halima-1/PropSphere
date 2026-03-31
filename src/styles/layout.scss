@@ -1,0 +1,70 @@
+// @import "./_variables.scss";
+@use "variables";
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #0A0F1E;
+    color: #FFFFFF;
+    padding: 20px;
+align-items: center;
+  border-bottom: 1px solid var(--border-card);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+    .logo{
+        color: #fbbf24;
+    }
+
+    nav{
+        ul{
+            // width: 40%;
+        display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+
+    li{
+        list-style: none;
+
+        &:hover{
+            border-bottom: 2px solid #fbbf24;
+            color: #fbbf24;
+        }
+
+    }
+        }
+    }
+
+    div{
+        .wallet-badge{
+            background-color: #fbbf24;
+            padding: 7px;
+            border-radius: 10px;
+        }
+    }
+}
+
+footer{
+    width: 100%;
+    background-color: #090d18;
+    color: #FFFFFF;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div{
+
+        h2{
+            font-size: 1rem;
+                // border-bottom: 2px solid white;
+                width: max-content;
+                        color: #fbbf24;
+                        font-weight: 600;
+        }
+    }
+}
