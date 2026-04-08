@@ -212,52 +212,7 @@ width: 90%;
     }
     }
 
-    .f-listings{
-    margin:0 auto;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px; 
-
-    div{
-            width: 30%;
-            border-radius: 10px;
-            // position: relative;
-
-        img{
-            width: 100%;
-            border-radius: 10px 10px 0 0;
-        }
-        .title{
-            position: relative;
-            bottom: -40px;
-            left: 10px;
-            background-color: #946f10;
-            padding:5px 7px;
-           border-radius: 15px;
-        }
-        .f-price{
-             position: relative;
-            top: -30px;
-            left: 10px;
-            // color: #946f10;
-
-        }
-        .f-about{
-            width: 100%;
-            background-color: rgba(85, 86, 87, 0.2);
-            border-radius:  0 0 10px 10px;
-            margin-top: -29px;
-            padding: 20px;
-
-            p{
-                margin: 10px auto;
-            }
-        }
-    }
-    }
-
+   
 }
 
 .overview{
@@ -281,3 +236,115 @@ width: 100%;
             }
         }
 }
+
+ .f-listings{
+    margin:0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    // flex-direction: row;
+    // justify-content: space-between;
+    gap: 30px; 
+
+    div{
+            width: 80%;
+            border-radius: 10px;
+            // position: relative;
+
+        img{
+            width: 100%;
+            border-radius: 10px 10px 0 0;
+            height: 200px;
+            object-position: center;
+            object-fit: cover;
+            // object-fit: fit;
+        }
+        .title{
+            position: relative;
+            bottom: -40px;
+            left: 10px;
+            background-color: #946f10;
+            padding:5px 7px;
+           border-radius: 15px;
+        }
+       .f-listed{
+         position: relative;
+            bottom: -40px;
+            right: -160px;
+                        padding:5px 7px;
+           border-radius: 15px;
+                        background-color: rgba(34, 33, 30,0.7);
+
+       }
+        .f-about{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(85, 86, 87, 0.2);
+            border-radius:  0 0 10px 10px;
+            margin-top: -9px;
+            padding: 10px;
+
+            .propCard-btn{
+                    margin:0 auto;
+width: 90%;
+        display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  :nth-child(1){
+                    width: 45%;
+                    margin:10px auto;
+        padding:6px  10px ;
+        border-radius: 10px;
+        border: none;
+        background-color: #fbbf24;
+        color: #0c111d;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover{
+            background-color: var(--text-secondary);
+        }
+            }
+
+            :nth-child(2){
+          width: 45%;
+margin:10px auto;
+        padding:6px  10px ;        border-radius: 10px;
+        border: 1px solid #fbbf24;
+        background-color: #111827;
+        color: #fbbf24;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover{
+            background-color: var(--text-secondary);
+        }
+    }
+
+            }
+          
+            p{
+                // margin: 5px 0;
+            }
+ .f-price{
+            //  position: relative;
+            // top: -30px;
+            // left: 10px;
+            color: #946f10;
+
+        }
+            .dets{
+                width: 100%;
+        display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // gap: 30px;
+    margin: 10px auto; 
+    color: #fbbf24;
+            }
+        }
+    }
+    }

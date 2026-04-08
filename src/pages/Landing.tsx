@@ -1,6 +1,14 @@
 import { ArrowRight, Coins, CoinsIcon, HomeIcon, House, HouseIcon, LinkIcon, List, ListCheck, ListChevronsDownUp, ListCollapse, ListEnd, ListOrderedIcon, LucideHouse, MapPinHouseIcon, ShoppingBag, Wallet2, WalletCardsIcon, WalletIcon } from "lucide-react"
 import "../styles/landing.scss"
+import { useReadAllProperties } from "../hooks/useGetAllProperties"
+import PropertyCard from "../components/PropertyCard"
+import { useNavigate } from "react-router-dom"
 const Landing = () => {
+  const properties = useReadAllProperties()
+  const navigate = useNavigate()
+  const featuredProperties =properties.filter((prop:any) => prop.isPropertyListed ==true).slice(0,3)
+
+  
     return (
         <>
             <section className="hero">
@@ -15,8 +23,16 @@ const Landing = () => {
                 </div>
                 <p>Propshere is a decentralized market place for listing and buying any property - Secured by blockchain.</p>
                 <div className="hero-btn">
-                    <button>Browse market place</button>
-                    <button>List property</button>
+                    <button
+                   onClick={() => {
+            navigate(`/MarketPlace`)
+          } }
+                    >Browse market place</button>
+                    <button
+                    onClick={() => {
+            navigate(`/Dashboard/create-property`)
+          }}
+                    >List property</button>
                 </div>
             </section>
 
@@ -52,38 +68,25 @@ const Landing = () => {
                 <h2>Featured listings</h2>
                 <div className="f-intro">
                     <p>Recently listed properties available for purchase</p>
-                    <span>View all listings <ArrowRight margin-top={20}/></span>
+                    <span
+                      onClick={() => {
+            navigate(`/MarketPlace`)
+          } }
+                    >View all listings <ArrowRight margin-top={20}/></span>
                 </div>
                 <div className="f-listings">
-                    <div>
-                        <b className="title">Featured</b>
-                        <img src="https://media.istockphoto.com/id/155374658/photo/large-american-detached-home-with-garden-and-blue-sky.jpg?s=612x612&w=0&k=20&c=-jxhWacK1nuWcnbovLMMyKJA5zDMN_vzpGR41nnqIWQ=" alt="" />
-                        <b className="f-price">123 ETH</b>
-                        <div className="f-about">
-                            <h3>Agege</h3>
-                            <p>Recently listed properties available</p>
-                            <div><span>333hhh</span><span>333hhh</span><span>333hhh</span></div>
-                        </div>
-                    </div>
-                     <div>
-                        <b className="title">Featured</b>
-                        <img src="https://media.istockphoto.com/id/155374658/photo/large-american-detached-home-with-garden-and-blue-sky.jpg?s=612x612&w=0&k=20&c=-jxhWacK1nuWcnbovLMMyKJA5zDMN_vzpGR41nnqIWQ=" alt="" />
-                        <b className="f-price">123 ETH</b>
-                        <div className="f-about">
-                            <h3>Agege</h3>
-                            <p>Recently listed properties available</p>
-                            <div><span>333hhh</span><span>333hhh</span><span>333hhh</span></div>
-                        </div>
-                    </div> <div>
-                        <b className="title">Featured</b>
-                        <img src="https://media.istockphoto.com/id/155374658/photo/large-american-detached-home-with-garden-and-blue-sky.jpg?s=612x612&w=0&k=20&c=-jxhWacK1nuWcnbovLMMyKJA5zDMN_vzpGR41nnqIWQ=" alt="" />
-                        <b className="f-price">123 ETH</b>
-                        <div className="f-about">
-                            <h3>Agege</h3>
-                            <p>Recently listed properties available</p>
-                            <div><span>333hhh</span><span>333hhh</span><span>333hhh</span></div>
-                        </div>
-                    </div>
+                   { featuredProperties.length === 0? (
+                      <p style={{ color: "#94a3b8" }}>No listed properties yet.</p>
+
+                   ) :(featuredProperties.map((prop:any) =>(
+                   <PropertyCard 
+                   key={prop.id}
+                   {...prop}
+                    onClick={() => navigate(`/property/${prop.id}`)}
+
+                   />   
+
+                   )))}
                 </div>
             </section>
             <section className="overview">

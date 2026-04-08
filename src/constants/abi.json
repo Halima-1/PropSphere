@@ -1,535 +1,647 @@
 [
-    {
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "inputs": [],
-        "name": "ALREADY_LISTED",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "BUYING_OWN_PROPERTY_NOT_ALLOWED",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "INSUFFICIENT_ALLOWANCE",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "INSUFFICIENT_BALANCE",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "INVALID_PROPERTY",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "NOT_LISTED",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "NOT_PROPERTY_OWNER",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "NOT_THE_OWNER",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "PROPERTY_DOES_NOT_EXIST",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "PROPERTY_NOT_FOUND",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "SOLD_OUT",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "ZERO_AMOUNT",
-        "type": "error"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            },
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyCategory",
-                "name": "category",
-                "type": "uint8"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "ALREADY_LISTED",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "BUYING_OWN_PROPERTY_NOT_ALLOWED",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "INSUFFICIENT_ALLOWANCE",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "INSUFFICIENT_BALANCE",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "INVALID_PROPERTY",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NOT_LISTED",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NOT_PROPERTY_OWNER",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NOT_THE_OWNER",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "PROPERTY_DOES_NOT_EXIST",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "PROPERTY_NOT_FOUND",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "SOLD_OUT",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Transaction_failed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ZERO_AMOUNT",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "Type",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyCategory",
+        "name": "category",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PropertyAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "PropertySold",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "propType",
+        "type": "uint8"
+      }
+    ],
+    "name": "propertyDeleted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "propType",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "propertyListed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "propType",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "propertyUnListed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "propType",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "propertyUpdated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "UnlistProperty",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyCategory",
+        "name": "_category",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "_propType",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyStatus",
+        "name": "_status",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.Warranty",
+        "name": "_warranty",
+        "type": "uint8"
+      },
+      {
+        "internalType": "string",
+        "name": "_imgUri",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_location",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      }
+    ],
+    "name": "addProperty",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "buyProperty",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllProperties",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "imgUri",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyType",
+            "name": "propType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyCategory",
+            "name": "category",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.Warranty",
+            "name": "warranty",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "propertyOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "listed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "soldOut",
+            "type": "bool"
+          }
         ],
-        "name": "PropertyAdded",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "buyer",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
+        "internalType": "struct PropertyManagement.Properties[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPropertyById",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "imgUri",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "location",
+            "type": "string"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyType",
+            "name": "propType",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyCategory",
+            "name": "category",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.Warranty",
+            "name": "warranty",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum PropertyManagement.PropertyStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "propertyOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "listed",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "soldOut",
+            "type": "bool"
+          }
         ],
-        "name": "PropertySold",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            }
+        "internalType": "struct PropertyManagement.Properties",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_propId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getSaleHistory",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timeStamp",
+            "type": "uint256"
+          }
         ],
-        "name": "propertyDeleted",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "propertyListed",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "propertyUnListed",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "propertyUpdated",
-        "type": "event"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "UnlistProperty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyCategory",
-                "name": "_category",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "_propType",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyStatus",
-                "name": "_status",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.Warranty",
-                "name": "_warranty",
-                "type": "uint8"
-            },
-            {
-                "internalType": "string",
-                "name": "_imgUri",
-                "type": "string"
-            }
-        ],
-        "name": "addProperty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "buyProperty",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getAllProperties",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint256",
-                        "name": "id",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyType",
-                        "name": "propType",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyCategory",
-                        "name": "category",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.Warranty",
-                        "name": "warranty",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyStatus",
-                        "name": "status",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "imgUri",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "propertyOwner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "timeStamp",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "bool",
-                        "name": "listed",
-                        "type": "bool"
-                    },
-                    {
-                        "internalType": "bool",
-                        "name": "soldOut",
-                        "type": "bool"
-                    }
-                ],
-                "internalType": "struct PropertyManagement.Properties[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "getPropertyById",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint256",
-                        "name": "id",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyType",
-                        "name": "propType",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyCategory",
-                        "name": "category",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.Warranty",
-                        "name": "warranty",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "enum PropertyManagement.PropertyStatus",
-                        "name": "status",
-                        "type": "uint8"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "imgUri",
-                        "type": "string"
-                    },
-                    {
-                        "internalType": "address",
-                        "name": "propertyOwner",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "timeStamp",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "bool",
-                        "name": "listed",
-                        "type": "bool"
-                    },
-                    {
-                        "internalType": "bool",
-                        "name": "soldOut",
-                        "type": "bool"
-                    }
-                ],
-                "internalType": "struct PropertyManagement.Properties",
-                "name": "",
-                "type": "tuple"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "listProperty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "paymentToken",
-        "outputs": [
-            {
-                "internalType": "contract IERC20",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "properties",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyType",
-                "name": "propType",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyCategory",
-                "name": "category",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.Warranty",
-                "name": "warranty",
-                "type": "uint8"
-            },
-            {
-                "internalType": "enum PropertyManagement.PropertyStatus",
-                "name": "status",
-                "type": "uint8"
-            },
-            {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "imgUri",
-                "type": "string"
-            },
-            {
-                "internalType": "address",
-                "name": "propertyOwner",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "timeStamp",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bool",
-                "name": "listed",
-                "type": "bool"
-            },
-            {
-                "internalType": "bool",
-                "name": "soldOut",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "removeProperty",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }
+        "internalType": "struct PropertyManagement.saleRecord[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "listProperty",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paymentToken",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "properties",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "imgUri",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "location",
+        "type": "string"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyType",
+        "name": "propType",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyCategory",
+        "name": "category",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.Warranty",
+        "name": "warranty",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum PropertyManagement.PropertyStatus",
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "propertyOwner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "timeStamp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "listed",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "soldOut",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeProperty",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ]
