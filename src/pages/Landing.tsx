@@ -4,16 +4,16 @@ import { useReadAllProperties } from "../hooks/useGetAllProperties"
 import PropertyCard from "../components/PropertyCard"
 import { useNavigate } from "react-router-dom"
 const Landing = () => {
-  const properties = useReadAllProperties()
-  const navigate = useNavigate()
-  const featuredProperties =properties.filter((prop:any) => prop.isPropertyListed ==true).slice(0,3)
+    const properties = useReadAllProperties()
+    const navigate = useNavigate()
+    const featuredProperties = properties.filter((prop: any) => prop.isPropertyListed == true).slice(0, 3)
 
-  
+
     return (
         <>
             <section className="hero">
                 <div>
-                    <span>0 Properties listed</span>
+                    <span>{properties.length} Properties listed</span>
                     <span style={{ color: "#fbbf24" }}><Coins size={14} color="#fbbf24" margin-bottom="-10px" />0 Properties sold</span>
                     <span ><LinkIcon size={14} color="grey" />Lisk sepolia network</span>
                 </div>
@@ -24,14 +24,14 @@ const Landing = () => {
                 <p>Propshere is a decentralized market place for listing and buying any property - Secured by blockchain.</p>
                 <div className="hero-btn">
                     <button
-                   onClick={() => {
-            navigate(`/MarketPlace`)
-          } }
+                        onClick={() => {
+                            navigate(`/market-place`)
+                        }}
                     >Browse market place</button>
                     <button
-                    onClick={() => {
-            navigate(`/Dashboard/create-property`)
-          }}
+                        onClick={() => {
+                            navigate(`/Dashboard/create-property`)
+                        }}
                     >List property</button>
                 </div>
             </section>
@@ -69,24 +69,26 @@ const Landing = () => {
                 <div className="f-intro">
                     <p>Recently listed properties available for purchase</p>
                     <span
-                      onClick={() => {
-            navigate(`/MarketPlace`)
-          } }
-                    >View all listings <ArrowRight margin-top={20}/></span>
+                        onClick={() => {
+                            navigate(`/MarketPlace`)
+                        }}
+                    >View all listings <ArrowRight margin-top={20} /></span>
                 </div>
                 <div className="f-listings">
-                   { featuredProperties.length === 0? (
-                      <p style={{ color: "#94a3b8" }}>No listed properties yet.</p>
+                    {featuredProperties.length === 0 ? (
+                        <p style={{ color: "#94a3b8" }}>No listed properties yet.</p>
 
-                   ) :(featuredProperties.map((prop:any) =>(
-                   <PropertyCard 
-                   key={prop.id}
-                   {...prop}
-                    onClick={() => navigate(`/property/${prop.id}`)}
+                    ) : (featuredProperties.map((prop: any) => (
+                        <PropertyCard
+                            key={prop.id}
+                            {...prop}
+                            onClick={() =>
+                                navigate(`/market-place/${prop.id}`)
 
-                   />   
+                            }
+                        />
 
-                   )))}
+                    )))}
                 </div>
             </section>
             <section className="overview">

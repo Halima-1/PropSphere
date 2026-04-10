@@ -12,7 +12,7 @@ import UserProperties from './pages/UserProperties';
 import Overview from './pages/Overview';
 import Settings from './pages/Settings';
 import PropertyDetails from './pages/PropertyDetails';
-import Dashboard from './pages/Dashboard';
+// import Dashboard from './pages/dashboard';
 import UserTransaction from './pages/UserTransaction';
 import AddNewProperty from './pages/AddNewProperty';
 
@@ -43,12 +43,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Landing />} />
-              <Route path="/Dashboard/overview" element={<Overview />} />
-              <Route path="/MarketPlace" element={<MarketPlace />} />
-              <Route path="/Dashboard/settings" element={<Settings />} />
-              <Route path="/Dashboard/transaction" element={<UserTransaction />} />
-              <Route path="/Dashboard/properties" element={<UserProperties />} />
-              <Route path="/Dashboard/create-property" element={<AddNewProperty />} />
+              <Route path="/dashboard/overview" element={<Overview />} />
+              <Route path="/market-place" element={<MarketPlace />} />
+                            <Route path="/market-place/:id" element={<PropertyDetails />} />
+              <Route path="/dashboard/settings" element={<Settings />} />
+              <Route path="/dashboard/transaction" element={<UserTransaction />} />
+              <Route path="/dashboard/properties" element={<UserProperties />} />
+              <Route path="/dashboard/create-property" element={<AddNewProperty />} />
 
             </Route>
             {/* <Route path="/register" element={<Register />} />

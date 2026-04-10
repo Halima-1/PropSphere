@@ -1,48 +1,101 @@
-body{
+body {
     background-color: #111827;
 }
-.market-place{
 
+.market-place {
     background-color: #111827;
     height: 100%;
     width: 100%;
+    animation: fadeInDown 0.6s ease-out forwards;
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
     
-    .mp-intro{
-    width: 80%;
-    margin: 20px auto;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;    
+    .mp-intro {
+        width: 90%;
+        margin: 20px auto;
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+
+        @media (min-width: 768px) {
+            width: 80%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
-    .search-bar{
-    width: 60%;
-    margin: 20px auto;
-    padding: 10px ;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
-    background-color: rgba(128, 133, 145, 0.4);
+    .search-bar {
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgba(128, 133, 145, 0.4);
+        border-radius: 10px;
 
-    .search{
-            width: 50%;
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(128, 133, 145, 0.4);
-    span{
-    background-color: rgba(128, 133, 145, 0.4);
-    margin-top: 5px;
-    }
-    input{
-    background-color: rgba(128, 133, 145, 0.4);
-    padding: 10px;
-    outline: none;
-    border: none;
-    width: 98%;
-    }
-    }
-    }
+        @media (min-width: 768px) {
+            width: 60%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0;
+        }
 
+        .search {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            background-color: transparent;
 
+            @media (min-width: 768px) {
+                width: 50%;
+                background-color: rgba(128, 133, 145, 0.4);
+            }
+
+            span {
+                background-color: transparent;
+                margin-top: 5px;
+            }
+
+            input {
+                background-color: transparent;
+                padding: 10px;
+                outline: none;
+                border: none;
+                width: 98%;
+                color: white;
+            }
+        }
+
+        select {
+            background-color: #111827;
+            color: white;
+            border: 1px solid rgba(128, 133, 145, 0.4);
+            border-radius: 5px;
+            padding: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                border-color: #fbbf24;
+            }
+        }
+
+        .count {
+            animation: pulse 2s infinite;
+
+            @keyframes pulse {
+                0% { opacity: 0.8; }
+                50% { opacity: 1; }
+                100% { opacity: 0.8; }
+            }
+        }
+    }
 }
