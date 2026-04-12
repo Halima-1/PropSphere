@@ -1,6 +1,5 @@
 // import { useAppKitAccount } from "@reown/appkit/react"
 import { ArrowLeftRightIcon, HousePlug, MenuSquare, Settings } from "lucide-react"
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 export type SidebarProps = {
   activeView: string

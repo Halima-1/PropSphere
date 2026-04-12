@@ -1,4 +1,4 @@
-import { ArrowRight, Coins, CoinsIcon, HomeIcon, House, HouseIcon, LinkIcon, List, ListCheck, ListChevronsDownUp, ListCollapse, ListEnd, ListOrderedIcon, LucideHouse, MapPinHouseIcon, ShoppingBag, Wallet2, WalletCardsIcon, WalletIcon } from "lucide-react"
+import { ArrowRight, Coins, LinkIcon, ListCheck, ShoppingBag, WalletIcon } from "lucide-react"
 import "../styles/landing.scss"
 import { useReadAllProperties } from "../hooks/useGetAllProperties"
 import PropertyCard from "../components/PropertyCard"

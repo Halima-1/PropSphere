@@ -98,6 +98,7 @@ const navigate = useNavigate()
                 title || "",
                 description || ""
             )
+            resetForm()
         } catch (error) {
             console.error(error)
         }

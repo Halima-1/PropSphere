@@ -39,14 +39,13 @@ export type PropertyCardProps = {
   isPropertyListed: boolean
   warranty:string
   location:string
+  soldOut:boolean
   description:string
   status:string
-  timestamp: number
+  timeStamp: number
     children?: React.ReactNode;
-        property: any;
-
-  onClick?: () => void          // click handler
-  className?: string            // extra css class
-  style?: React.CSSProperties   // inline styles
-  showBuyButton?: boolean       // toggle features per use case
-}
+        propertyy: any;
+  onClick?: () => void          
+  className?: string            
+  style?: React.CSSProperties   
+  showBuyButton?: boolean      }

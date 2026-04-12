@@ -12,29 +12,45 @@ import {
 import toast from "react-hot-toast";
 // import { formatEther, parseUnits } from "ethers";
 
+export interface Property {
+  id: number;
+  title: string;
+  imageUri: string;
+  price: bigint;
+  location: string;
+  propertyType: string;
+  propertyCategory: string;
+  propertyWaranty: string;
+  status: string;
+  description: string;
+  propertyOwner: string;
+  timeStamp: bigint;
+  isPropertyListed: boolean;
+  soldOut: boolean;
+}
+
 export const useReadAllProperties = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Property[]>([]);
 
   const getAllProperty = async () => {
     try {
       const contract = PropsphereContract(readProvider);
       const properties = await contract.getAllProperties();
-      const allProperties = properties.map((prop: any) => ({
+      const allProperties: Property[] = properties.map((prop: any) => ({
         id: Number(prop.id),
         title: prop.title,
         imageUri: prop.imgUri,
         price: prop.amount,
-        location:prop.location,
+        location: prop.location,
         propertyType: PropertyType[Number(prop.propType)],
-        propertyCategory:Category[Number(prop.category)],
+        propertyCategory: Category[Number(prop.category)],
         propertyWaranty: Warranty[Number(prop.warranty)],
-        status:PropertyStatus[Number(prop.status)],
-        description:prop.description,
+        status: PropertyStatus[Number(prop.status)],
+        description: prop.description,
         propertyOwner: prop.propertyOwner,
-        timeStamp:prop.timeStamp,
+        timeStamp: prop.timeStamp,
         isPropertyListed: prop.listed,
-        soldOut:prop.soldOut,
-        // propertyTotalSales: Number(prop.totalSales),
+        soldOut: prop.soldOut,
       }));
       setData(allProperties);
     } catch (error) {

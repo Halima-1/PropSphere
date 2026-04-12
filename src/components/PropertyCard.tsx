@@ -16,9 +16,7 @@ const PropertyCard = ({
   description,
   onClick,
   style,
-  children,
-  property
-  // showBuyButton = true,
+  children
 }: PropertyCardProps) => (
   <div onClick={onClick} style={style}>
     <b className="f-listed">{isPropertyListed ? "Listed" : "Not listed"}</b>

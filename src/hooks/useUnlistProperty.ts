@@ -7,8 +7,6 @@ import { PropsphereContract } from "../constants/contracts";
 import { customError } from "../utils/errorHandler";
 import { ErrorDecoder } from "ethers-decode-error";
 import abi from "../constants/abi.json";
-import { useReadAllProperties } from "./useGetAllProperties";
-
 export const useUnListProperty = () => {
     const { isConnected } = useAppKitAccount();
     const { chainId } = useAppKitNetwork();

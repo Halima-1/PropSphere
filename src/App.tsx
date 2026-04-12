@@ -1,8 +1,5 @@
-import { useState } from 'react'
-
 import './App.css'
 import AppkitWrapper from './connection/index'
-import ConnectButton from './connectionButton'
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
@@ -27,15 +24,7 @@ function App() {
     );
   };
 
-   const dashboardLayout = () => {
-    return (
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-    );
-  };
+   
   return (
     <>
       <AppkitWrapper>
@@ -45,16 +34,13 @@ function App() {
               <Route path="/" element={<Landing />} />
               <Route path="/dashboard/overview" element={<Overview />} />
               <Route path="/market-place" element={<MarketPlace />} />
-                            <Route path="/market-place/:id" element={<PropertyDetails />} />
+              <Route path="/market-place/:id" element={<PropertyDetails />} />
               <Route path="/dashboard/settings" element={<Settings />} />
               <Route path="/dashboard/transaction" element={<UserTransaction />} />
               <Route path="/dashboard/properties" element={<UserProperties />} />
               <Route path="/dashboard/create-property" element={<AddNewProperty />} />
 
             </Route>
-            {/* <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} /> */}
           </Routes>
         </BrowserRouter>
       </AppkitWrapper>

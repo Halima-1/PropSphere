@@ -15,16 +15,13 @@ const MarketPlace = () => {
     const [sortOrder, setSortOrder] = useState("newest")
     const [categoryFilter, setCategoryFilter] = useState("All properties")
 
-    // Filter and sort logic combined
     const filteredAndSortedProperties = listedProperties
         .filter((prop: any) => {
-            // Priority 1: Search text match (checks both Title and Location)
             const query = searchQuery.toLowerCase()
             const matchSearch = 
                 (prop.title && prop.title.toLowerCase().includes(query)) ||
                 (prop.location && prop.location.toLowerCase().includes(query))
             
-            // Priority 2: Category match
             const matchCategory = 
                 categoryFilter === "All properties" || 
                 prop.propertyCategory === categoryFilter ||
@@ -43,14 +40,14 @@ const MarketPlace = () => {
             } else if (sortOrder === "oldest") {
                 return idA - idB;
             }
-            return 0; // fallback un-sorted
+            return 0; 
         });
 
     return (
         <>
             <section className="market-place">
                 <div className="mp-intro">
-                    <div>
+                    <div className="mp-intro1">
                         <h1>Market Place</h1>
                         <span>{listedProperties.length} listings</span>
                     </div>
@@ -68,7 +65,8 @@ const MarketPlace = () => {
                         />
                     </div>
 
-                    <select name="filter" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                   <div className="select">
+                     <select name="filter" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
                         <option value="newest">Newest</option>
                         <option value="oldest">Oldest</option>
                     </select>
@@ -83,6 +81,7 @@ const MarketPlace = () => {
                         <option value="Electrical device">Electrical device</option>
                     </select>
 
+                   </div>
                     <p className="count">Showing {filteredAndSortedProperties.length} of {listedProperties.length} properties</p>
                 </div>
 

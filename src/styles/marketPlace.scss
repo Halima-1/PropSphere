@@ -6,8 +6,13 @@ body {
     background-color: #111827;
     height: 100%;
     width: 100%;
+    padding: 10px 0;
     animation: fadeInDown 0.6s ease-out forwards;
 
+    @media (min-width: 768px) {
+    padding: 30px 0;
+
+        }
     @keyframes fadeInDown {
         from { opacity: 0; transform: translateY(-20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -16,17 +21,63 @@ body {
     .mp-intro {
         width: 90%;
         margin: 20px auto;
-        padding-top: 50px;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        align-items: flex-start;
 
         @media (min-width: 768px) {
             width: 80%;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 20px 0;
+            // align-items: center;
+        }
+
+        p{
+         width: 100%;
+
+         @media (min-width: 768px) {
+            width: 50%;
+            margin: auto;
+            margin-left: 60px;
+            // align-items: center;
+        }
+ 
+        }
+
+        .mp-intro1{
+            width: 100%;
+             padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        // gap: 15px;
+        align-items: flex-start;
+
+        h1{
+            font-size: 1.5rem;
+        }
+
+        span{
+            margin-top: 7px;
+        }
+         @media (min-width: 768px) {
+            padding-top: 40px;
+            margin: auto;
+            width: 90%;
             flex-direction: row;
             justify-content: space-between;
-            align-items: center;
+            // align-items: center;
+
+            h1{
+                            font-size: 2.5rem;
+            }
+
+            span{
+            margin-top: 12px;
+        }
+        }
+
         }
     }
 
@@ -41,7 +92,7 @@ body {
         border-radius: 10px;
 
         @media (min-width: 768px) {
-            width: 60%;
+            width: 70%;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
@@ -53,7 +104,8 @@ body {
             display: flex;
             flex-direction: row;
             background-color: transparent;
-
+ background-color: rgba(128, 133, 145, 0.4);
+        border-radius: 10px;
             @media (min-width: 768px) {
                 width: 50%;
                 background-color: rgba(128, 133, 145, 0.4);
@@ -71,10 +123,20 @@ body {
                 border: none;
                 width: 98%;
                 color: white;
+                 background-color: rgba(128, 133, 145, 0.4);
+        // border-radius: 10px;
             }
         }
 
-        select {
+        .select{
+            width: 100%;
+             display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 15px;
+        
+    select {
+            width: max-content;
             background-color: #111827;
             color: white;
             border: 1px solid rgba(128, 133, 145, 0.4);
@@ -88,7 +150,14 @@ body {
             }
         }
 
+         @media (min-width: 768px) {
+                width: max-content;
+           }
+        }
+        
+
         .count {
+            // width: ;
             animation: pulse 2s infinite;
 
             @keyframes pulse {

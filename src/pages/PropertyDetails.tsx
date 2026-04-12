@@ -1,63 +1,40 @@
 import { useParams } from "react-router-dom"
-import { useReadAllProperties } from "../hooks/useGetAllProperties"
-import type { PropertyCardProps } from "../utils/enumMapper"
+import { type Property, useReadAllProperties } from "../hooks/useGetAllProperties"
 import "../styles/propDetails.scss"
 import { useState } from "react"
-import { Calendar1Icon, CurrencyIcon, Heart, MapPin, TypeOutline, TypeOutlineIcon } from "lucide-react"
-import { formatEther } from "ethers"
+import { Calendar1Icon, Heart, MapPin } from "lucide-react"
 import { HiNumberedList } from "react-icons/hi2"
 import { GrCurrency } from "react-icons/gr"
-import { LuFileType } from "react-icons/lu"
-import { CiGlass } from "react-icons/ci"
 import { MdClass } from "react-icons/md"
 // import { useBuyProperty } from "../hooks/useBuyProperty"
-const PropertyDetails = ({
-    id,
-    title,
-    price,
-    imageUri,
-    propertyType,
-    propertyCategory,
-    propertyOwner,
-    isPropertyListed,
-    location,
-    description,
-    onClick,
-    style,
-    children,
-    property,
-    // showBuyButton = true,
-}: PropertyCardProps) => {
-    // const buyProperty = "useBuyProperty"
+const PropertyDetails = () => {
     const allProperties = useReadAllProperties()
     const param = useParams()
     const idd = param.id
-    const propertyy = allProperties.find((item: any) => item.id == idd)
+    const propertyy: Property | undefined = allProperties.find((item: Property) => item.id == Number(idd))
+    console.log(propertyy)
     // const pricee =formatEther(propertyy?.price)
     const [imageIndex, setImageIndex] = useState(0)
 
     const date = new Date(Number(propertyy?.timeStamp) * 1000);
     const formattedDate = (date).toDateString()
-    // const dateCreated = Number(formattedDate);
+    // const dateCreated = Numer(formattedDate);
     return (
         <>
-            {/* <p style={{ color: "white" }}>{propertyy?.id}</p>
-            <p style={{ color: "white" }}>{allProperties?.length}</p> */}
-
             <p className="head">Market place {` > ${propertyy?.title}`}</p>
             <section className="details-container">
                 <div className="images">
                     <div className="cover-img">
                         <img
-                            src={`https://gateway.pinata.cloud/ipfs/${propertyy?.imageUri.split(",")[imageIndex]}`}
-                            alt={title}
+                            src={`https://gateway.pinata.cloud/ipfs/${propertyy?.imageUri?.split(",")[imageIndex]}`}
+                            alt={propertyy?.title}
                             onError={(e) => {
                                 e.currentTarget.src = "https://placehold.co/400x300?text=No+Image"
                             }}
                         />
                     </div>
                     <div className="other-imgs">
-                        {propertyy?.imageUri.split(",").map((image, index: any) => (
+                        {propertyy?.imageUri?.split(",").map((image: string, index: any) => (
                             <img key={index}
                                 onClick={() => setImageIndex(index)}
                                 src={`https://gateway.pinata.cloud/ipfs/${image}`}
